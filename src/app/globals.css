@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-radius: var(--radius);
+  --color-gold: var(--gold);
+}
+
+:root {
+  /* Hex codes for fallback/reference */
+  /* Background: #02040a (Deep Night Blue-Black) */
+  /* Foreground: #f8fafc (Crisp White/Slate-50) */
+
+  --background: #02040a;
+  --foreground: #f8fafc;
+
+  /* Card: #0b1221 (Rich Deep Blue-Gray) */
+  --card: #0b1221;
+  --card-foreground: #f8fafc;
+
+  /* Popover: #0b1221 */
+  --popover: #0b1221;
+  --popover-foreground: #f8fafc;
+
+  /* Primary: #e0b354 (Luxe Gold) */
+  --primary: #e0b354;
+  --primary-foreground: #02040a;
+
+  /* Secondary: #1e293b (Slate-800) */
+  --secondary: #1e293b;
+  --secondary-foreground: #f8fafc;
+
+  /* Muted: #334155 (Slate-700) */
+  --muted: #334155;
+  --muted-foreground: #94a3b8;
+
+  /* Accent: #1e293b (matches secondary for subtle hover) */
+  --accent: #1e293b;
+  --accent-foreground: #e0b354;
+
+  /* Destructive: #7f1d1d (Red-900) */
+  --destructive: #7f1d1d;
+  --destructive-foreground: #fecaca;
+
+  /* Border: #1e293b (Slate-800) */
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #e0b354;
+
+  --radius: 0.5rem;
+
+  /* Custom Gold */
+  --gold: #e0b354;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+  }
+}
+
+/* Scrollbar Styling for Webkit */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
