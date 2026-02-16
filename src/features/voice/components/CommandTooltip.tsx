@@ -1,12 +1,8 @@
 "use client";
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"; // Need to create tooltip
-import { Info } from "lucide-react";
+
+// Tooltip imports removed as component is not present/used.
+// import { Info } from "lucide-react"; 
 
 export function CommandTooltip() {
   return (

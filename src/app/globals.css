@@ -22,53 +22,97 @@
   --color-ring: var(--ring);
   --color-radius: var(--radius);
   --color-gold: var(--gold);
+  --color-gold-dim: var(--gold-dim);
+  --color-obsidian: var(--obsidian);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes shimmer {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
 }
 
 :root {
-  /* Hex codes for fallback/reference */
-  /* Background: #02040a (Deep Night Blue-Black) */
-  /* Foreground: #f8fafc (Crisp White/Slate-50) */
+  /* Cosmic Luxury Palette */
 
+  /* Background: Deep Obsidian */
   --background: #02040a;
-  --foreground: #f8fafc;
+  /* Foreground: Starlight White */
+  --foreground: #ffffff;
 
-  /* Card: #0b1221 (Rich Deep Blue-Gray) */
-  --card: #0b1221;
-  --card-foreground: #f8fafc;
+  /* Card: Translucent Obsidian */
+  --card: rgba(11, 18, 33, 0.6);
+  --card-foreground: #ffffff;
 
-  /* Popover: #0b1221 */
-  --popover: #0b1221;
-  --popover-foreground: #f8fafc;
+  /* Popover: Solid Obsidian */
+  --popover: #050a14;
+  --popover-foreground: #ffffff;
 
-  /* Primary: #e0b354 (Luxe Gold) */
-  --primary: #e0b354;
-  --primary-foreground: #02040a;
+  /* Primary: Luxe Gold */
+  --primary: #ffd700;
+  --primary-foreground: #000000;
 
-  /* Secondary: #1e293b (Slate-800) */
-  --secondary: #1e293b;
-  --secondary-foreground: #f8fafc;
+  /* Secondary: Deep Aurora Blue */
+  --secondary: #0f172a;
+  --secondary-foreground: #ffffff;
 
-  /* Muted: #334155 (Slate-700) */
-  --muted: #334155;
+  /* Muted: Slate */
+  --muted: #1e293b;
   --muted-foreground: #94a3b8;
 
-  /* Accent: #1e293b (matches secondary for subtle hover) */
-  --accent: #1e293b;
-  --accent-foreground: #e0b354;
+  /* Accent: Subtle Gold Glow */
+  --accent: rgba(255, 215, 0, 0.1);
+  --accent-foreground: #ffd700;
 
-  /* Destructive: #7f1d1d (Red-900) */
+  /* Destructive */
   --destructive: #7f1d1d;
   --destructive-foreground: #fecaca;
 
-  /* Border: #1e293b (Slate-800) */
-  --border: #1e293b;
-  --input: #1e293b;
-  --ring: #e0b354;
+  /* Border: Faint White/Gold */
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: rgba(255, 215, 0, 0.5);
 
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 
-  /* Custom Gold */
-  --gold: #e0b354;
+  /* Custom Variables */
+  --gold: #ffd700;
+  --gold-dim: #b8860b;
+  --obsidian: #02040a;
 }
 
 @layer base {
@@ -80,21 +124,35 @@
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
+    background-image:
+      radial-gradient(
+        circle at 50% 0%,
+        rgba(255, 215, 0, 0.05) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 100% 0%,
+        rgba(6, 182, 212, 0.08) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 0% 100%,
+        rgba(168, 85, 247, 0.08) 0%,
+        transparent 50%
+      );
+    background-attachment: fixed;
   }
 }
 
-/* Scrollbar Styling for Webkit */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+/* Utilities */
+.glass {
+  @apply backdrop-blur-md bg-white/5 border border-white/10;
 }
-::-webkit-scrollbar-track {
-  background: var(--background);
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
 }
-::-webkit-scrollbar-thumb {
-  background: var(--muted);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
+
+.border-glow {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.1) inset;
 }

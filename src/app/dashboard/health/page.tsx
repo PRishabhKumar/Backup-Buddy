@@ -1,49 +1,62 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { SpotlightCard } from "@/components/ui/spotlight-card";
 import { HealthGauge } from "@/features/health/components/HealthGauge";
 import { BadSectorTable } from "@/features/health/components/BadSectorTable";
-import { ShieldCheck, AlertTriangle } from "lucide-react";
+import { ShieldCheck, AlertTriangle, Activity } from "lucide-react";
 
 export default function HealthPage() {
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-8">
+      <div className="flex items-center justify-between rounded-2xl bg-black/20 border border-white/5 p-6 backdrop-blur-md">
         <div>
-           <h2 className="text-3xl font-bold tracking-tight text-foreground">Health Monitor</h2>
-           <p className="text-muted-foreground">Real-time analysis of your SD card's physical condition.</p>
+           <h2 className="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
+              Storage Health <Activity className="h-6 w-6 text-emerald-500 animate-pulse" />
+           </h2>
+           <p className="text-muted-foreground">Real-time physical sector analysis protocols active.</p>
         </div>
-        <div className="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-1 text-sm text-emerald-500">
+        <div className="flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
             <ShieldCheck className="h-4 w-4" />
-            <span>System Healthy</span>
+            <span>Optimal Integrity</span>
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2 lg:h-[600px]">
          {/* Left Column: Gauge */}
-         <Card className="flex flex-col items-center justify-center p-6 bg-card/50 backdrop-blur-sm">
-            <CardHeader className="w-full pb-2">
-                <CardTitle>Wear Level</CardTitle>
-                <CardDescription>Estimated lifespan based on write cycles.</CardDescription>
-            </CardHeader>
-            <CardContent className="flex flex-1 items-center justify-center pb-6">
-                 <HealthGauge value={92} label="Health" />
-            </CardContent>
-         </Card>
+         <SpotlightCard className="flex flex-col items-center justify-center p-8 bg-black/40 backdrop-blur-xl border-white/10" spotlightColor="rgba(16, 185, 129, 0.2)">
+             <div className="w-full pb-6 text-center border-b border-white/5 mb-6">
+                <h3 className="text-xl font-bold text-white mb-2">Wear Level Estimator</h3>
+                <p className="text-muted-foreground text-sm">Lifespan projection based on 45TB total writes.</p>
+             </div>
+             <div className="flex flex-1 items-center justify-center w-full">
+                 <div className="scale-125 transform">
+                    <HealthGauge value={92} label="Health" />
+                 </div>
+             </div>
+             <div className="mt-8 grid grid-cols-2 gap-4 w-full text-center">
+                 <div className="p-3 rounded-lg bg-white/5 border border-white/5">
+                    <p className="text-xs text-muted-foreground">Est. Remaining</p>
+                    <p className="text-lg font-bold text-white">4.2 Years</p>
+                 </div>
+                  <div className="p-3 rounded-lg bg-white/5 border border-white/5">
+                    <p className="text-xs text-muted-foreground">Temp</p>
+                    <p className="text-lg font-bold text-emerald-400">34°C</p>
+                 </div>
+             </div>
+         </SpotlightCard>
 
          {/* Right Column: Bad Sectors */}
-         <Card className="flex flex-col bg-card/50 backdrop-blur-sm">
-            <CardHeader>
-                <div className="flex items-center justify-between">
-                    <div>
-                        <CardTitle>Sector Analysis</CardTitle>
-                        <CardDescription>Recent read/write errors detected.</CardDescription>
-                    </div>
-                    <AlertTriangle className="h-5 w-5 text-amber-500" />
+         <SpotlightCard className="flex flex-col bg-black/40 backdrop-blur-xl border-white/10" spotlightColor="rgba(245, 158, 11, 0.2)">
+            <div className="p-6 border-b border-white/5 flex items-center justify-between">
+                <div>
+                    <h3 className="text-xl font-bold text-white">Sector Analysis</h3>
+                    <p className="text-muted-foreground text-sm">Deep-scan error logs.</p>
                 </div>
-            </CardHeader>
-             <CardContent>
+                <AlertTriangle className="h-5 w-5 text-amber-500" />
+            </div>
+             <div className="p-6 flex-1 overflow-auto">
                  <BadSectorTable />
-             </CardContent>
-         </Card>
+             </div>
+         </SpotlightCard>
       </div>
     </div>
   );
