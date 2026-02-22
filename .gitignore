@@ -1,1 +1,7 @@
 Submission doc.pdf
+.venv/
+notes.md
+requirements.txt
+Backend\requirements.txt
+Backend\logs.txt
+Backend\__pycache__
